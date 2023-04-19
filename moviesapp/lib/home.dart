@@ -25,6 +25,16 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: Padding(
+          padding: const EdgeInsets.all(5.0),
+          child: Image.asset(
+            "assets/images/movie.png",
+          ),
+        ),
+        title: Text('Movies Database'),
+        centerTitle: true,
+      ),
       body: SafeArea(
           child: Center(
         child: SingleChildScrollView(
@@ -45,29 +55,39 @@ class _MyHomePageState extends State<MyHomePage> {
                       _selectedValue = value;
                     });
                   }),
+              // Separator Sized Box.
               const SizedBox(
-                height: 15,
+                height: 7,
               ),
+              // Main Body
               FutureBuilder(
                 future: APIService.api.fetchMoviesInfo(_selectedValue),
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     MovieResponse movieResponse = snapshot.data!;
-                    return ListView.builder(
+                    return ListView.separated(
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
-                      itemCount: movieResponse.results?.length,
+                      itemCount: movieResponse.results?.length ?? 0,
                       itemBuilder: (context, index) => ListTile(
                         onTap: () {
                           _navigateToMovie(movieResponse.results![index]);
                         },
                         leading: Image.network(
-                            "${imageURL}${movieResponse.results![index].posterPath}"),
+                          "${imageURL}${movieResponse.results![index].posterPath}",
+                        ),
                         title: Text(
-                            "${movieResponse.results![index].title} (${movieResponse.results![index].releaseDate?.split("-")[0]})"),
+                          "${movieResponse.results![index].title} (${movieResponse.results![index].releaseDate?.split("-")[0]})",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16.0,
+                          ),
+                        ),
                         subtitle: Text(
                             "Rate: ${movieResponse.results![index].voteAverage} ⭐"),
                       ),
+                      separatorBuilder: (BuildContext context, int index) =>
+                          Divider(),
                     );
                   } else if (snapshot.hasError) {
                     return Center(
