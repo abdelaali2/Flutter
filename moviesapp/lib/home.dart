@@ -4,6 +4,8 @@ import 'package:moviesapp/data/datasource/local/ctaegories.dart';
 import 'package:moviesapp/data/datasource/remote/APIService.dart';
 import 'package:moviesapp/data/datasource/remote/constants.dart';
 import 'package:moviesapp/data/model/MovieResponse.dart';
+import 'package:moviesapp/gridSection.dart';
+import 'package:moviesapp/listSection.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -87,81 +89,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   if (snapshot.hasData) {
                     MovieResponse movieResponse = snapshot.data!;
                     return _displayGrid
-                        ? GridView.builder(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemCount: movieResponse.results?.length ?? 0,
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              crossAxisSpacing: 8,
-                              mainAxisSpacing: 8,
-                            ),
-                            itemBuilder: (context, index) => GestureDetector(
-                              onTap: () {
-                                _navigateToMovie(movieResponse.results![index]);
-                              },
-                              child: Card(
-                                child: Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.stretch,
-                                  children: [
-                                    Expanded(
-                                      child: Image.network(
-                                        "${imageURL}${movieResponse.results![index].posterPath}",
-                                        fit: BoxFit.contain,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "${movieResponse.results![index].title} (${movieResponse.results![index].releaseDate?.split("-")[0]})",
-                                            style: const TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 16.0,
-                                            ),
-                                          ),
-                                          const SizedBox(height: 4),
-                                          Text(
-                                            "Rate: ${movieResponse.results![index].voteAverage} ⭐",
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          )
-                        : ListView.separated(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemCount: movieResponse.results?.length ?? 0,
-                            itemBuilder: (context, index) => ListTile(
-                              onTap: () {
-                                _navigateToMovie(movieResponse.results![index]);
-                              },
-                              leading: Image.network(
-                                "${imageURL}${movieResponse.results![index].posterPath}",
-                              ),
-                              title: Text(
-                                "${movieResponse.results![index].title} (${movieResponse.results![index].releaseDate?.split("-")[0]})",
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16.0,
-                                ),
-                              ),
-                              subtitle: Text(
-                                  "Rate: ${movieResponse.results![index].voteAverage} ⭐"),
-                            ),
-                            separatorBuilder:
-                                (BuildContext context, int index) =>
-                                    const Divider(),
-                          );
+                        ? GridSection(movieResponse.results!, _navigateToMovie)
+                        : ListSection(movieResponse.results!, _navigateToMovie);
                   } else if (snapshot.hasError) {
                     return Center(
                       child: Text(snapshot.error.toString()),
