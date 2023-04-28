@@ -61,7 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         });
                       }),
                   IconButton(
-                    icon: const Icon(Icons.grid_view),
+                    icon: const Icon(Icons.grid_view_rounded),
                     onPressed: () {
                       _displayGrid = true;
                       setState(() {});
