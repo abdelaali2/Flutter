@@ -65,15 +65,17 @@ class _MyHomePageState extends State<MyHomePage> {
                   IconButton(
                     icon: const Icon(Icons.grid_view_rounded),
                     onPressed: () {
-                      _displayGrid = true;
-                      setState(() {});
+                      setState(() {
+                        _displayGrid = true;
+                      });
                     },
                   ),
                   IconButton(
                     icon: const Icon(Icons.list),
                     onPressed: () {
-                      _displayGrid = false;
-                      setState(() {});
+                      setState(() {
+                        _displayGrid = true;
+                      });
                     },
                   ),
                 ],
