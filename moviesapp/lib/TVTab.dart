@@ -1,27 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:moviesapp/MovieInfo.dart';
-import 'package:moviesapp/data/datasource/local/ctaegories.dart';
-import 'package:moviesapp/data/datasource/remote/APIService.dart';
-import 'package:moviesapp/data/datasource/remote/constants.dart';
-import 'package:moviesapp/data/model/MovieResponse.dart';
-import 'package:moviesapp/MoviesGrid.dart';
-import 'package:moviesapp/MoviesList.dart';
+import 'package:moviesapp/TVGrid.dart';
+import 'package:moviesapp/TVInfo.dart';
 
-import 'BottomNavBar.dart';
+import 'data/datasource/local/ctaegories.dart';
+import 'data/datasource/remote/APIService.dart';
+import 'data/model/TVResponse.dart';
 
-class MoviesTab extends StatefulWidget {
-  const MoviesTab({super.key});
+class TVTab extends StatefulWidget {
+  const TVTab({super.key});
 
   @override
-  State<MoviesTab> createState() => _MoviesTabState();
+  State<TVTab> createState() => _TVTabState();
 }
 
-class _MoviesTabState extends State<MoviesTab> {
-  void _navigateToMovie(Results response) {
+class _TVTabState extends State<TVTab> {
+  void _navigateToTVShow(TVResults response) {
     Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => MovieInfo(response),
+          builder: (context) => TVInfo(response),
         ));
   }
 
@@ -41,7 +38,7 @@ class _MoviesTabState extends State<MoviesTab> {
             const Padding(
               padding: EdgeInsets.all(8.0),
               child: Text(
-                "Now Playing",
+                "Airing Today",
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w500,
@@ -54,11 +51,11 @@ class _MoviesTabState extends State<MoviesTab> {
             ),
             // Main Body
             FutureBuilder(
-              future: APIService.api.fetchMoviesInfo(categories[0]),
+              future: APIService.api.fetchTVInfo(categories[3]),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
-                  MovieResponse movieResponse = snapshot.data!;
-                  return MoviesGrid(movieResponse.results!, _navigateToMovie);
+                  TVResponse tvResponse = snapshot.data!;
+                  return TVGrid(tvResponse.results!, _navigateToTVShow);
                 } else if (snapshot.hasError) {
                   return Center(
                     child: Text(snapshot.error.toString()),
@@ -86,11 +83,11 @@ class _MoviesTabState extends State<MoviesTab> {
               height: 5,
             ),
             FutureBuilder(
-              future: APIService.api.fetchMoviesInfo(categories[1]),
+              future: APIService.api.fetchTVInfo(categories[1]),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
-                  MovieResponse movieResponse = snapshot.data!;
-                  return MoviesGrid(movieResponse.results!, _navigateToMovie);
+                  TVResponse tvResponse = snapshot.data!;
+                  return TVGrid(tvResponse.results!, _navigateToTVShow);
                 } else if (snapshot.hasError) {
                   return Center(
                     child: Text(snapshot.error.toString()),
@@ -118,11 +115,11 @@ class _MoviesTabState extends State<MoviesTab> {
               height: 5,
             ),
             FutureBuilder(
-              future: APIService.api.fetchMoviesInfo(categories[2]),
+              future: APIService.api.fetchTVInfo(categories[2]),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
-                  MovieResponse movieResponse = snapshot.data!;
-                  return MoviesGrid(movieResponse.results!, _navigateToMovie);
+                  TVResponse tvResponse = snapshot.data!;
+                  return TVGrid(tvResponse.results!, _navigateToTVShow);
                 } else if (snapshot.hasError) {
                   return Center(
                     child: Text(snapshot.error.toString()),

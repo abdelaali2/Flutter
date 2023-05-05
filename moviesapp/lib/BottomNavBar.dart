@@ -11,28 +11,38 @@ class CustomBottomNavBar extends StatefulWidget {
 }
 
 class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
-  int _currentIndex = 0;
-
   @override
   Widget build(BuildContext context) {
-    return const TabBar(
-      indicatorColor: Colors.deepPurple,
-      labelColor: Colors.deepPurple,
+    return TabBar(
+      indicatorColor: Colors.deepOrange,
+      labelColor: Colors.deepOrange,
       tabs: [
         Tab(
           // icon: SvgPicture.asset("assets/images/SVG/movies.svg"),
           // SVG Package conflicts with loading assets in the project.
-          icon: Icon(Icons.movie),
+          icon: Image.asset(
+            'assets/images/tab1.png',
+            width: 24.0,
+            height: 24.0,
+          ),
           text: 'Movies',
         ),
         Tab(
           // icon: SvgPicture.asset("assets/images/SVG/tv.svg"),
-          icon: Icon(Icons.tv),
+          icon: Image.asset(
+            'assets/images/tv.png',
+            width: 24.0,
+            height: 24.0,
+          ),
           text: 'TV',
         ),
         Tab(
           // icon: SvgPicture.asset("assets/images/SVG/profile.svg"),
-          icon: Icon(Icons.account_circle),
+          icon: Image.asset(
+            'assets/images/profile.png',
+            width: 24.0,
+            height: 24.0,
+          ),
           text: 'Profile',
         ),
       ],

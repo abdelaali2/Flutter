@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:moviesapp/data/model/MovieResponse.dart';
+import 'package:moviesapp/data/model/TVResponse.dart';
 
 import 'data/datasource/remote/constants.dart';
 
-class MovieInfo extends StatelessWidget {
-  final Results movieInfo;
-  const MovieInfo(this.movieInfo, {super.key});
+class TVInfo extends StatelessWidget {
+  TVInfo(this.tvShow, {super.key});
+
+  TVResults tvShow;
 
   @override
   Widget build(BuildContext context) {
@@ -23,30 +24,25 @@ class MovieInfo extends StatelessWidget {
             ),
             SizedBox(
                 width: 280,
-                child: Image.network("${imageURL}${movieInfo.posterPath}")),
+                child: Image.network("$imageURL${tvShow.posterPath}")),
             Text(
-              "${movieInfo.title}\n(${movieInfo.releaseDate})",
+              "${tvShow.name}\n(${tvShow.firstAirDate})",
               style: const TextStyle(
                 fontSize: 20.0,
                 fontWeight: FontWeight.bold,
               ),
               textAlign: TextAlign.center,
             ),
-            Text("${movieInfo.voteAverage} ⭐"),
+            Text("${tvShow.voteAverage} ⭐"),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                "${movieInfo.overview}",
+                "${tvShow.overview}",
                 style: const TextStyle(
                   fontSize: 16.0,
                 ),
               ),
             ),
-            // IconButton(
-            //     onPressed: () {
-            //       Navigator.pop(context);
-            //     },
-            //     icon: const Icon(Icons.arrow_back))
           ]),
         ),
       )),

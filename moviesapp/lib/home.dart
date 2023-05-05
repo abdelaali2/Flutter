@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'BottomNavBar.dart';
 import 'MoviesTab.dart';
+import 'TVTab.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -23,13 +24,13 @@ class _MyHomePageState extends State<MyHomePage> {
               "assets/images/movie.png",
             ),
           ),
-          title: const Text('Movies Database'),
+          title: const Text('CineGuide'),
           centerTitle: true,
         ),
         bottomNavigationBar: const CustomBottomNavBar(),
         body: const TabBarView(children: [
           MoviesTab(),
-          Center(child: Text('Tab 2')),
+          TVTab(),
           Center(child: Text('Tab 3')),
         ]),
       ),
