@@ -17,7 +17,6 @@ class MoviesTab extends StatefulWidget {
 }
 
 class _MoviesTabState extends State<MoviesTab> {
-  String _selectedValue = categories[0];
   bool _displayGrid = true;
 
   void _navigateToMovie(Results response) {
@@ -35,56 +34,33 @@ class _MoviesTabState extends State<MoviesTab> {
       child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Drop down menu
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                DropdownButton(
-                    value: _selectedValue,
-                    items: categories
-                        .map((e) => DropdownMenuItem(
-                              value: e,
-                              child: Text(e),
-                            ))
-                        .toList(),
-                    onChanged: (value) {
-                      APIService.api.fetchMoviesInfo(value!);
-                      setState(() {
-                        _selectedValue = value;
-                      });
-                    }),
-                IconButton(
-                  icon: const Icon(Icons.grid_view_rounded),
-                  onPressed: () {
-                    setState(() {
-                      _displayGrid = true;
-                    });
-                  },
+            // Separator Sized Box.
+            const SizedBox(
+              height: 5,
+            ),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text(
+                "Now Playing",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
                 ),
-                IconButton(
-                  icon: const Icon(Icons.list),
-                  onPressed: () {
-                    setState(() {
-                      _displayGrid = false;
-                    });
-                  },
-                ),
-              ],
+              ),
             ),
             // Separator Sized Box.
             const SizedBox(
-              height: 7,
+              height: 5,
             ),
             // Main Body
             FutureBuilder(
-              future: APIService.api.fetchMoviesInfo(_selectedValue),
+              future: APIService.api.fetchMoviesInfo(categories[0]),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   MovieResponse movieResponse = snapshot.data!;
-                  return _displayGrid
-                      ? GridSection(movieResponse.results!, _navigateToMovie)
-                      : ListSection(movieResponse.results!, _navigateToMovie);
+                  return GridSection(movieResponse.results!, _navigateToMovie);
                 } else if (snapshot.hasError) {
                   return Center(
                     child: Text(snapshot.error.toString()),
@@ -93,7 +69,71 @@ class _MoviesTabState extends State<MoviesTab> {
                   return const CircularProgressIndicator();
                 }
               },
-            )
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text(
+                "Top Rated",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            // Separator Sized Box.
+            const SizedBox(
+              height: 5,
+            ),
+            FutureBuilder(
+              future: APIService.api.fetchMoviesInfo(categories[1]),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  MovieResponse movieResponse = snapshot.data!;
+                  return GridSection(movieResponse.results!, _navigateToMovie);
+                } else if (snapshot.hasError) {
+                  return Center(
+                    child: Text(snapshot.error.toString()),
+                  );
+                } else {
+                  return const CircularProgressIndicator();
+                }
+              },
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text(
+                "Popular",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            // Separator Sized Box.
+            const SizedBox(
+              height: 5,
+            ),
+            FutureBuilder(
+              future: APIService.api.fetchMoviesInfo(categories[2]),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  MovieResponse movieResponse = snapshot.data!;
+                  return GridSection(movieResponse.results!, _navigateToMovie);
+                } else if (snapshot.hasError) {
+                  return Center(
+                    child: Text(snapshot.error.toString()),
+                  );
+                } else {
+                  return const CircularProgressIndicator();
+                }
+              },
+            ),
           ],
         ),
       ),

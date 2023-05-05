@@ -1,4 +1,5 @@
 const categories = [
-  "Popular",
+  "Now Playing",
   "Top Rated",
+  "Popular",
 ];
