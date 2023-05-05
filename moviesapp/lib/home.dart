@@ -31,7 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
         body: const TabBarView(children: [
           MoviesTab(),
           TVTab(),
-          Center(child: Text('Tab 3')),
+          Center(child: Text('Profile Tab')),
         ]),
       ),
     );

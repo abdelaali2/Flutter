@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moviesapp/MoviesList.dart';
+import 'CustomGridCard.dart';
 import 'MovieGridCard.dart';
 import 'MovieInfo.dart';
 import 'data/datasource/remote/constants.dart';
@@ -29,35 +30,11 @@ class MoviesGrid extends StatelessWidget {
         ),
         itemBuilder: (context, index) {
           if (index == shortList.length) {
-            return GridView.count(
-              crossAxisCount: 1,
-              children: [
-                InkWell(
-                  onTap: () {
-                    _showMore(context);
-                  },
-                  child: Container(
-                    // width: 50,
-                    // height: 50,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(200.0),
-                      image: const DecorationImage(
-                        image: AssetImage("assets/images/bg.png"),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    child: const Center(
-                      child: Text(
-                        "More",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ),
-                )
-              ],
+            return InkWell(
+              onTap: () {
+                _showMore(context);
+              },
+              child: const CustomCard(),
             );
           } else {
             return InkWell(
