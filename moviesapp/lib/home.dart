@@ -18,12 +18,14 @@ class _MyHomePageState extends State<MyHomePage> {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          leading: Padding(
-            padding: const EdgeInsets.all(5.0),
-            child: Image.asset(
-              "assets/images/movie.png",
+          actions: [
+            Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: Image.asset(
+                "assets/images/movie.png",
+              ),
             ),
-          ),
+          ],
           title: const Text('CineGuide'),
           centerTitle: true,
         ),

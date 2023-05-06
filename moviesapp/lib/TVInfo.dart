@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moviesapp/data/model/TVResponse.dart';
 
+import 'SimilarTVShows.dart';
 import 'data/datasource/remote/constants.dart';
 
 class TVInfo extends StatelessWidget {
@@ -14,6 +15,16 @@ class TVInfo extends StatelessWidget {
       appBar: AppBar(
         title: const Text('CineGuide'),
         centerTitle: true,
+        actions: [
+          GestureDetector(
+            onTap: () {
+              Navigator.popUntil(context, (route) => route.isFirst);
+            },
+            child: Image.asset(
+              "assets/images/movie.png",
+            ),
+          ),
+        ],
       ),
       body: SafeArea(
           child: SingleChildScrollView(
@@ -43,6 +54,23 @@ class TVInfo extends StatelessWidget {
                 ),
               ),
             ),
+            const SizedBox(
+              height: 5,
+            ),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text(
+                "You may also like",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            SimilarTVShows(tvShow),
           ]),
         ),
       )),
