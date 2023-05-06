@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:moviesapp/SimilarMovies.dart';
 import 'package:moviesapp/data/model/MovieResponse.dart';
 
+import 'CustomAppBar.dart';
 import 'data/datasource/remote/constants.dart';
 
 class MovieInfo extends StatelessWidget {
@@ -11,20 +12,7 @@ class MovieInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('CineGuide'),
-        centerTitle: true,
-        actions: [
-          GestureDetector(
-            onTap: () {
-              Navigator.popUntil(context, (route) => route.isFirst);
-            },
-            child: Image.asset(
-              "assets/images/movie.png",
-            ),
-          ),
-        ],
-      ),
+      appBar: const CustomAppBar(),
       body: SafeArea(
           child: SingleChildScrollView(
         child: Center(

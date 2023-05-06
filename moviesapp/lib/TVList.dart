@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'CustomAppBar.dart';
 import 'data/datasource/remote/constants.dart';
 import 'data/model/TVResponse.dart';
 
@@ -11,10 +12,7 @@ class TVList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('CineGuide'),
-        centerTitle: true,
-      ),
+      appBar: const CustomAppBar(),
       body: SingleChildScrollView(
         child: ListView.separated(
           shrinkWrap: true,
