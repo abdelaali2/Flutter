@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:moviesapp/utilities/CustomAppBar.dart';
 
-import 'CustomAppBar.dart';
-import 'data/datasource/remote/constants.dart';
-import 'data/model/TVResponse.dart';
+import '../data/datasource/remote/constants.dart';
+import '../data/model/TVResponse.dart';
 
 class TVList extends StatelessWidget {
   TVList(this.tvShows, this._navigateToTVShow, {super.key});

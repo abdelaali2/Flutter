@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:moviesapp/TVGrid.dart';
-import 'package:moviesapp/TVInfo.dart';
 
-import 'data/datasource/local/ctaegories.dart';
-import 'data/datasource/remote/APIService.dart';
-import 'data/model/TVResponse.dart';
+import '../data/datasource/local/ctaegories.dart';
+import '../data/datasource/remote/APIService.dart';
+import '../data/model/TVResponse.dart';
+import 'TVGrid.dart';
+import 'TVInfo.dart';
 
 class TVTab extends StatefulWidget {
   const TVTab({super.key});

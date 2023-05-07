@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:moviesapp/CustomGridCard.dart';
+import 'package:moviesapp/utilities/CustomGridCard.dart';
+import '../data/model/MovieResponse.dart';
+import 'MovieGridCard.dart';
+import 'MoviesList.dart';
 
-import 'TVGridCard.dart';
-import 'TVList.dart';
-import 'data/model/TVResponse.dart';
+class MoviesGrid extends StatelessWidget {
+  List<Results> movieList;
+  final void Function(Results) _navigateToMovie;
 
-class TVGrid extends StatelessWidget {
-  TVGrid(this.tvShows, this._navigateToTVShow, {super.key});
-  List<TVResults> tvShows;
-  final void Function(TVResults) _navigateToTVShow;
+  MoviesGrid(this.movieList, this._navigateToMovie, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    List<TVResults> shortList = tvShows.sublist(0, 4);
+    List<Results> shortList = movieList.sublist(0, 4);
     return SizedBox(
       width: double.infinity,
       height: 300,
@@ -37,9 +37,9 @@ class TVGrid extends StatelessWidget {
           } else {
             return InkWell(
                 onTap: () {
-                  _navigateToTVShow(shortList[index]);
+                  _navigateToMovie(shortList[index]);
                 },
-                child: TVGridCard(shortList[index]));
+                child: MovieGridCard(shortList[index]));
           }
         },
       ),
@@ -50,6 +50,6 @@ class TVGrid extends StatelessWidget {
     Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) => TVList(tvShows, _navigateToTVShow)));
+            builder: (context) => MoviesList(movieList, _navigateToMovie)));
   }
 }

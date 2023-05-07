@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:moviesapp/data/model/TVResponse.dart';
+import 'package:moviesapp/data/datasource/remote/constants.dart';
+import 'package:moviesapp/data/model/MovieResponse.dart';
 
-import 'TVInfo.dart';
-import 'data/datasource/remote/APIService.dart';
-import 'data/datasource/remote/constants.dart';
+import '../data/datasource/remote/APIService.dart';
+import 'MovieInfo.dart';
 
-class SimilarTVShows extends StatelessWidget {
-  SimilarTVShows(this.currentTVShow, {super.key});
+class SimilarMovies extends StatelessWidget {
+  SimilarMovies(this.currentMovie, {super.key});
 
-  TVResults currentTVShow;
+  Results currentMovie;
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: APIService.api.fetchSimilarTVShows(currentTVShow.id!),
+      future: APIService.api.fetchSimilarMovies(currentMovie.id!),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          TVResponse similarTVShowsResponse = snapshot.data!;
+          MovieResponse similarMoviesResponse = snapshot.data!;
           return SizedBox(
             width: double.infinity,
             height: 200,
@@ -24,20 +24,19 @@ class SimilarTVShows extends StatelessWidget {
               shrinkWrap: true,
               // physics: const NeverScrollableScrollPhysics(),
               scrollDirection: Axis.horizontal,
-              itemCount: similarTVShowsResponse.results!.length,
+              itemCount: similarMoviesResponse.results!.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 1,
                 childAspectRatio: 1.2,
               ),
               itemBuilder: (context, index) {
-                TVResults similarTVShow =
-                    similarTVShowsResponse.results![index];
+                Results similarMovie = similarMoviesResponse.results![index];
                 return InkWell(
                   onTap: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => TVInfo(similarTVShow),
+                          builder: (context) => MovieInfo(similarMovie),
                         ));
                   },
                   child: Column(
@@ -50,7 +49,7 @@ class SimilarTVShows extends StatelessWidget {
                           placeholder:
                               const AssetImage('assets/images/tab1.png'),
                           image: NetworkImage(
-                              '$imageURL/${similarTVShow.posterPath}'),
+                              '$imageURL/${similarMovie.posterPath}'),
                           fit: BoxFit.cover,
                           imageErrorBuilder: (context, error, stackTrace) {
                             return SizedBox(
@@ -60,7 +59,7 @@ class SimilarTVShows extends StatelessWidget {
                           },
                         ),
                       ),
-                      Text("${similarTVShow.name}"),
+                      Text("${similarMovie.title}"),
                     ],
                   ),
                 );

@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:moviesapp/MovieInfo.dart';
 import 'package:moviesapp/data/datasource/local/ctaegories.dart';
 import 'package:moviesapp/data/datasource/remote/APIService.dart';
-import 'package:moviesapp/data/datasource/remote/constants.dart';
 import 'package:moviesapp/data/model/MovieResponse.dart';
-import 'package:moviesapp/MoviesGrid.dart';
-import 'package:moviesapp/MoviesList.dart';
 
-import 'BottomNavBar.dart';
+import 'MovieInfo.dart';
+import 'MoviesGrid.dart';
 
 class MoviesTab extends StatefulWidget {
   const MoviesTab({super.key});

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:moviesapp/data/model/TVResponse.dart';
 
-import 'data/datasource/remote/constants.dart';
-import 'data/model/MovieResponse.dart';
+import '../data/datasource/remote/constants.dart';
 
-class MovieGridCard extends StatelessWidget {
-  MovieGridCard(this.movie, {super.key});
-  Results movie;
+class TVGridCard extends StatelessWidget {
+  TVResults tvShow;
+
+  TVGridCard(this.tvShow, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class MovieGridCard extends StatelessWidget {
             ],
           ),
           child: Image.network(
-            "$imageURL${movie.posterPath}",
+            "$imageURL${tvShow.posterPath}",
             fit: BoxFit.cover,
           ),
         ),
@@ -34,7 +35,7 @@ class MovieGridCard extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                "${movie.title} (${movie.releaseDate?.split("-")[0]})",
+                "${tvShow.name} (${tvShow.firstAirDate?.split("-")[0]})",
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16.0,
@@ -43,7 +44,7 @@ class MovieGridCard extends StatelessWidget {
               ),
               const SizedBox(height: 4),
               Text(
-                "Rate: ${movie.voteAverage} ⭐",
+                "Rate: ${tvShow.voteAverage} ⭐",
               ),
             ],
           ),

@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:moviesapp/data/model/TVResponse.dart';
+import 'package:moviesapp/data/model/MovieResponse.dart';
+import 'package:moviesapp/utilities/CustomAppBar.dart';
 
-import 'CustomAppBar.dart';
-import 'SimilarTVShows.dart';
-import 'data/datasource/remote/constants.dart';
+import '../data/datasource/remote/constants.dart';
+import 'SimilarMovies.dart';
 
-class TVInfo extends StatelessWidget {
-  TVInfo(this.tvShow, {super.key});
-
-  TVResults tvShow;
+class MovieInfo extends StatelessWidget {
+  final Results movieInfo;
+  const MovieInfo(this.movieInfo, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +31,7 @@ class TVInfo extends StatelessWidget {
               child: FadeInImage(
                 width: 450,
                 placeholder: const AssetImage('assets/images/tab1.png'),
-                image: NetworkImage('$imageURL${tvShow.posterPath}'),
+                image: NetworkImage('$imageURL${movieInfo.posterPath}'),
                 fit: BoxFit.contain,
                 imageErrorBuilder: (context, error, stackTrace) {
                   return SizedBox(
@@ -46,18 +45,18 @@ class TVInfo extends StatelessWidget {
               height: 10,
             ),
             Text(
-              "${tvShow.name}\n(${tvShow.firstAirDate})",
+              "${movieInfo.title}\n(${movieInfo.releaseDate})",
               style: const TextStyle(
                 fontSize: 20.0,
                 fontWeight: FontWeight.bold,
               ),
               textAlign: TextAlign.center,
             ),
-            Text("${tvShow.voteAverage} ⭐"),
+            Text("${movieInfo.voteAverage} ⭐"),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                "${tvShow.overview}",
+                "${movieInfo.overview}",
                 style: const TextStyle(
                   fontSize: 16.0,
                 ),
@@ -79,7 +78,7 @@ class TVInfo extends StatelessWidget {
             const SizedBox(
               height: 5,
             ),
-            SimilarTVShows(tvShow),
+            SimilarMovies(movieInfo),
           ]),
         ),
       )),

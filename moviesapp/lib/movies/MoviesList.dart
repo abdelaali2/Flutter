@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:moviesapp/utilities/CustomAppBar.dart';
 
-import 'CustomAppBar.dart';
-import 'data/datasource/remote/constants.dart';
-import 'data/model/MovieResponse.dart';
+import '../data/datasource/remote/constants.dart';
+import '../data/model/MovieResponse.dart';
 
 class MoviesList extends StatelessWidget {
   List<Results> movieList;

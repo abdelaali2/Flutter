@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:moviesapp/tv/TVTab.dart';
+import 'package:moviesapp/utilities/BottomNavBar.dart';
+import 'package:moviesapp/utilities/CustomAppBar.dart';
 
-import 'BottomNavBar.dart';
-import 'CustomAppBar.dart';
-import 'MoviesTab.dart';
-import 'TVTab.dart';
+import 'movies/MoviesTab.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});

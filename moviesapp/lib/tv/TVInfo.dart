@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:moviesapp/SimilarMovies.dart';
-import 'package:moviesapp/data/model/MovieResponse.dart';
+import 'package:moviesapp/data/model/TVResponse.dart';
+import 'package:moviesapp/utilities/CustomAppBar.dart';
 
-import 'CustomAppBar.dart';
-import 'data/datasource/remote/constants.dart';
+import '../data/datasource/remote/constants.dart';
+import 'SimilarTVShows.dart';
 
-class MovieInfo extends StatelessWidget {
-  final Results movieInfo;
-  const MovieInfo(this.movieInfo, {super.key});
+class TVInfo extends StatelessWidget {
+  TVInfo(this.tvShow, {super.key});
+
+  TVResults tvShow;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,7 @@ class MovieInfo extends StatelessWidget {
               child: FadeInImage(
                 width: 450,
                 placeholder: const AssetImage('assets/images/tab1.png'),
-                image: NetworkImage('$imageURL${movieInfo.posterPath}'),
+                image: NetworkImage('$imageURL${tvShow.posterPath}'),
                 fit: BoxFit.contain,
                 imageErrorBuilder: (context, error, stackTrace) {
                   return SizedBox(
@@ -45,18 +46,18 @@ class MovieInfo extends StatelessWidget {
               height: 10,
             ),
             Text(
-              "${movieInfo.title}\n(${movieInfo.releaseDate})",
+              "${tvShow.name}\n(${tvShow.firstAirDate})",
               style: const TextStyle(
                 fontSize: 20.0,
                 fontWeight: FontWeight.bold,
               ),
               textAlign: TextAlign.center,
             ),
-            Text("${movieInfo.voteAverage} ⭐"),
+            Text("${tvShow.voteAverage} ⭐"),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                "${movieInfo.overview}",
+                "${tvShow.overview}",
                 style: const TextStyle(
                   fontSize: 16.0,
                 ),
@@ -78,7 +79,7 @@ class MovieInfo extends StatelessWidget {
             const SizedBox(
               height: 5,
             ),
-            SimilarMovies(movieInfo),
+            SimilarTVShows(tvShow),
           ]),
         ),
       )),
