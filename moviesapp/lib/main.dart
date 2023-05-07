@@ -17,6 +17,23 @@ class MyApp extends StatelessWidget {
       title: 'Movies APP',
       theme: ThemeData(
         primarySwatch: Colors.deepOrange,
+        inputDecorationTheme: InputDecorationTheme(
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(40),
+              borderSide: BorderSide(color: Colors.deepOrange[800]!),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(40),
+              borderSide: BorderSide(color: Colors.deepOrange[800]!),
+            ),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(40),
+              borderSide: BorderSide(color: Colors.deepOrange[800]!),
+            ),
+            disabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(40),
+              borderSide: BorderSide(color: Colors.deepOrange[800]!),
+            )),
       ),
       home: const MyHomePage(),
     );

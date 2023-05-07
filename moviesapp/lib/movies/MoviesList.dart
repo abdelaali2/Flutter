@@ -13,7 +13,7 @@ class MoviesList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(),
+      appBar: CustomAppBar(context: context),
       body: SingleChildScrollView(
         child: ListView.separated(
           shrinkWrap: true,
