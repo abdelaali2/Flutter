@@ -8,19 +8,15 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      title: const Text('CineGuide'),
-      centerTitle: true,
-      actions: [
-        GestureDetector(
-          onTap: () {
-            Navigator.popUntil(context, (route) => route.isFirst);
-          },
-          child: Image.asset(
-            "assets/images/movie.png",
-          ),
+    return AppBar(title: const Text('CineGuide'), centerTitle: true, actions: [
+      GestureDetector(
+        onTap: () {
+          Navigator.popUntil(context, (route) => route.isFirst);
+        },
+        child: Image.asset(
+          "assets/images/movie.png",
         ),
-      ],
-    );
+      ),
+    ]);
   }
 }

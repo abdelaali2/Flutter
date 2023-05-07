@@ -20,9 +20,30 @@ class MovieInfo extends StatelessWidget {
             const SizedBox(
               height: 7,
             ),
-            SizedBox(
-                width: 280,
-                child: Image.network("$imageURL${movieInfo.posterPath}")),
+            Container(
+              decoration: BoxDecoration(boxShadow: [
+                BoxShadow(
+                    color: Colors.deepOrange.withOpacity(0.30),
+                    spreadRadius: 3,
+                    blurRadius: 5,
+                    offset: const Offset(0, 3))
+              ]),
+              child: FadeInImage(
+                width: 450,
+                placeholder: const AssetImage('assets/images/tab1.png'),
+                image: NetworkImage('$imageURL${movieInfo.posterPath}'),
+                fit: BoxFit.contain,
+                imageErrorBuilder: (context, error, stackTrace) {
+                  return SizedBox(
+                      width: 300,
+                      height: 300,
+                      child: Image.asset('assets/images/tab1.png'));
+                },
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
             Text(
               "${movieInfo.title}\n(${movieInfo.releaseDate})",
               style: const TextStyle(
