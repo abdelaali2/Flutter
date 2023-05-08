@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../data/datasource/remote/constants.dart';
 import '../data/model/MovieCategory.dart';
+import '../utilities/RatingStars.dart';
 
 class MovieGridCard extends StatelessWidget {
   MovieGridCard(this.movie, {super.key});
@@ -42,9 +43,7 @@ class MovieGridCard extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 4),
-              Text(
-                "Rate: ${movie.voteAverage} ⭐",
-              ),
+              RatingStars(movie.voteAverage.toDouble()),
             ],
           ),
         ),

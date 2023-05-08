@@ -3,6 +3,7 @@ import 'package:moviesapp/data/model/SearchResponse.dart';
 
 import '../data/datasource/remote/constants.dart';
 import '../utilities/ProductInfo.dart';
+import '../utilities/RatingStars.dart';
 
 class SearchMovieTile extends StatelessWidget {
   const SearchMovieTile(this.searchedMovie, {super.key});
@@ -37,7 +38,7 @@ class SearchMovieTile extends StatelessWidget {
           fontSize: 16.0,
         ),
       ),
-      subtitle: Text("Rate: ${searchedMovie.voteAverage} ⭐"),
+      subtitle: RatingStars(searchedMovie.voteAverage.toDouble()),
       trailing: Image.asset(
         'assets/images/movie_filled.png',
         width: 24.0,

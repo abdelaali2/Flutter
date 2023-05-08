@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moviesapp/utilities/CustomAppBar.dart';
 import 'package:moviesapp/utilities/ProductInfo.dart';
+import 'package:moviesapp/utilities/RatingStars.dart';
 
 import '../data/datasource/local/Products.dart';
 import '../data/datasource/remote/constants.dart';
@@ -38,7 +39,7 @@ class MoviesList extends StatelessWidget {
                 fontSize: 16.0,
               ),
             ),
-            subtitle: Text("Rate: ${movieList[index].voteAverage} ⭐"),
+            subtitle: RatingStars(movieList[index].voteAverage.toDouble()),
           ),
           separatorBuilder: (BuildContext context, int index) =>
               const Divider(),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../data/datasource/remote/constants.dart';
 import '../data/model/DetailedMovie.dart';
+import '../utilities/RatingStars.dart';
 import 'SimilarMovies.dart';
 
 class MoviePage extends StatelessWidget {
@@ -47,7 +48,14 @@ class MoviePage extends StatelessWidget {
           ),
           textAlign: TextAlign.center,
         ),
-        Text("${movie.voteAverage} ⭐"),
+        Center(
+          child: Column(
+            children: [
+              Text("${movie.voteAverage}"),
+              RatingStars(movie.voteAverage.toDouble()),
+            ],
+          ),
+        ),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(

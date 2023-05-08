@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moviesapp/data/model/DetailedTVShow.dart';
+import 'package:moviesapp/utilities/RatingStars.dart';
 
 import '../data/datasource/remote/constants.dart';
 import 'SimilarTVShows.dart';
@@ -47,7 +48,14 @@ class TVShowPage extends StatelessWidget {
           ),
           textAlign: TextAlign.center,
         ),
-        Text("${tvShow.voteAverage} ⭐"),
+        Center(
+          child: Column(
+            children: [
+              Text("${tvShow.voteAverage}"),
+              RatingStars(tvShow.voteAverage.toDouble()),
+            ],
+          ),
+        ),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(

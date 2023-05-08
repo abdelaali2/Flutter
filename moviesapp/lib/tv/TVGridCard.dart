@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:moviesapp/data/model/TVCategory.dart';
 
 import '../data/datasource/remote/constants.dart';
+import '../utilities/RatingStars.dart';
 
 class TVGridCard extends StatelessWidget {
   TVShow tvShow;
@@ -43,9 +44,7 @@ class TVGridCard extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 4),
-              Text(
-                "Rate: ${tvShow.voteAverage} ⭐",
-              ),
+              RatingStars(tvShow.voteAverage.toDouble()),
             ],
           ),
         ),

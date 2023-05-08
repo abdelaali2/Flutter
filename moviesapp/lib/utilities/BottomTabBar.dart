@@ -26,63 +26,66 @@ class _CustomBottomTabBarState extends State<CustomBottomTabBar> {
 
   @override
   Widget build(BuildContext context) {
-    return TabBar(
-      controller: widget._controller,
-      indicator: const BoxDecoration(
-        border: Border(
-          bottom: BorderSide(
-            color: Colors.deepOrange,
-            width: 2.0,
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: TabBar(
+        controller: widget._controller,
+        indicator: const BoxDecoration(
+          border: Border(
+            bottom: BorderSide(
+              color: Colors.deepOrange,
+              width: 3.0,
+            ),
           ),
         ),
+        indicatorColor: Colors.transparent,
+        labelColor: Colors.deepOrange,
+        unselectedLabelColor: Colors.grey,
+        tabs: [
+          Tab(
+            icon: Column(
+              children: [
+                Image.asset(
+                  widget._selectedIndex == 0
+                      ? 'assets/images/movie_filled.png'
+                      : 'assets/images/movie_void.png',
+                  width: 24.0,
+                  height: 24.0,
+                ),
+                const Text('Movies'),
+              ],
+            ),
+          ),
+          Tab(
+            icon: Column(
+              children: [
+                Image.asset(
+                  widget._selectedIndex == 1
+                      ? 'assets/images/tv_filled.png'
+                      : 'assets/images/tv_void.png',
+                  width: 24.0,
+                  height: 24.0,
+                ),
+                const Text('TV'),
+              ],
+            ),
+          ),
+          Tab(
+            icon: Column(
+              children: [
+                Image.asset(
+                  widget._selectedIndex == 2
+                      ? 'assets/images/profile_filled.png'
+                      : 'assets/images/profile_void.png',
+                  width: 24.0,
+                  height: 24.0,
+                ),
+                const Text('Profile'),
+              ],
+            ),
+          ),
+        ],
       ),
-      indicatorColor: Colors.transparent,
-      labelColor: Colors.deepOrange,
-      unselectedLabelColor: Colors.grey,
-      tabs: [
-        Tab(
-          icon: Column(
-            children: [
-              Image.asset(
-                widget._selectedIndex == 0
-                    ? 'assets/images/movie_filled.png'
-                    : 'assets/images/movie_void.png',
-                width: 24.0,
-                height: 24.0,
-              ),
-              const Text('Movies'),
-            ],
-          ),
-        ),
-        Tab(
-          icon: Column(
-            children: [
-              Image.asset(
-                widget._selectedIndex == 1
-                    ? 'assets/images/tv_filled.png'
-                    : 'assets/images/tv_void.png',
-                width: 24.0,
-                height: 24.0,
-              ),
-              const Text('TV'),
-            ],
-          ),
-        ),
-        Tab(
-          icon: Column(
-            children: [
-              Image.asset(
-                widget._selectedIndex == 2
-                    ? 'assets/images/profile_filled.png'
-                    : 'assets/images/profile_void.png',
-                width: 24.0,
-                height: 24.0,
-              ),
-              const Text('Profile'),
-            ],
-          ),
-        ),
-      ],
     );
   }
 }

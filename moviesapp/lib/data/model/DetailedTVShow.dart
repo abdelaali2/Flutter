@@ -20,7 +20,7 @@ class DetailedTVShow {
   String? originalLanguage;
   String? originalName;
   String? overview;
-  double? popularity;
+  dynamic popularity;
   String? posterPath;
   List<ProductionCompanies>? productionCompanies;
   List<ProductionCountries>? productionCountries;
@@ -29,7 +29,7 @@ class DetailedTVShow {
   String? status;
   String? tagline;
   String? type;
-  double? voteAverage;
+  dynamic voteAverage;
   int? voteCount;
 
   DetailedTVShow(
@@ -246,7 +246,7 @@ class LastEpisodeToAir {
   int? id;
   String? name;
   String? overview;
-  double? voteAverage;
+  dynamic voteAverage;
   int? voteCount;
   String? airDate;
   int? episodeNumber;

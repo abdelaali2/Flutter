@@ -5,6 +5,7 @@ import 'package:moviesapp/utilities/ProductInfo.dart';
 import '../data/datasource/local/Products.dart';
 import '../data/datasource/remote/constants.dart';
 import '../data/model/TVCategory.dart';
+import '../utilities/RatingStars.dart';
 
 class TVList extends StatelessWidget {
   const TVList(this.tvShows, {super.key});
@@ -38,7 +39,7 @@ class TVList extends StatelessWidget {
                 fontSize: 16.0,
               ),
             ),
-            subtitle: Text("Rate: ${tvShows[index].voteAverage} ⭐"),
+            subtitle: RatingStars(tvShows[index].voteAverage.toDouble()),
           ),
           separatorBuilder: (BuildContext context, int index) =>
               const Divider(),
