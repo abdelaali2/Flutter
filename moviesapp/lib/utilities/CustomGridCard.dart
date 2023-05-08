@@ -19,7 +19,7 @@ class CustomCard extends StatelessWidget {
               )
             ],
             image: const DecorationImage(
-              image: AssetImage("assets/images/bg.png"),
+              image: AssetImage("assets/images/launcher.png"),
               fit: BoxFit.cover,
             ),
           ),

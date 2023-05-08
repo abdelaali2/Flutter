@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:moviesapp/data/model/TVResponse.dart';
+import 'package:moviesapp/data/datasource/local/Products.dart';
+import 'package:moviesapp/data/model/TVCategory.dart';
+import 'package:moviesapp/utilities/ProductInfo.dart';
 
 import '../data/datasource/remote/APIService.dart';
 import '../data/datasource/remote/constants.dart';
-import 'TVInfo.dart';
+import '../data/model/DetailedTVShow.dart';
 
 class SimilarTVShows extends StatelessWidget {
-  SimilarTVShows(this.currentTVShow, {super.key});
+  const SimilarTVShows(this.currentTVShow, {super.key});
 
-  TVResults currentTVShow;
+  final DetailedTVShow currentTVShow;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,7 @@ class SimilarTVShows extends StatelessWidget {
       future: APIService.api.fetchSimilarTVShows(currentTVShow.id!),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          TVResponse similarTVShowsResponse = snapshot.data!;
+          TVCategory similarTVShowsResponse = snapshot.data!;
           return SizedBox(
             width: double.infinity,
             height: 200,
@@ -30,14 +32,14 @@ class SimilarTVShows extends StatelessWidget {
                 childAspectRatio: 1.2,
               ),
               itemBuilder: (context, index) {
-                TVResults similarTVShow =
-                    similarTVShowsResponse.results![index];
+                TVShow similarTVShow = similarTVShowsResponse.results![index];
                 return InkWell(
                   onTap: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => TVInfo(similarTVShow),
+                          builder: (context) =>
+                              ProductInfo(similarTVShow.id!, Products.tvShow),
                         ));
                   },
                   child: Column(
@@ -48,7 +50,7 @@ class SimilarTVShows extends StatelessWidget {
                           width: 150,
                           height: 150,
                           placeholder:
-                              const AssetImage('assets/images/tab1.png'),
+                              const AssetImage('assets/images/tv_void.png'),
                           image: NetworkImage(
                               '$imageURL/${similarTVShow.posterPath}'),
                           fit: BoxFit.cover,
@@ -56,7 +58,8 @@ class SimilarTVShows extends StatelessWidget {
                             return SizedBox(
                                 width: 150,
                                 height: 150,
-                                child: Image.asset('assets/images/tab1.png'));
+                                child:
+                                    Image.asset('assets/images/tv_filled.png'));
                           },
                         ),
                       ),

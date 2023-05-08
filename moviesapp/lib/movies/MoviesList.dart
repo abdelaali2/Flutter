@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:moviesapp/utilities/CustomAppBar.dart';
+import 'package:moviesapp/utilities/ProductInfo.dart';
 
+import '../data/datasource/local/Products.dart';
 import '../data/datasource/remote/constants.dart';
-import '../data/model/MovieResponse.dart';
+import '../data/model/MovieCategory.dart';
 
 class MoviesList extends StatelessWidget {
-  List<Results> movieList;
-  final void Function(Results) navigateToMovie;
-
-  MoviesList(this.movieList, this.navigateToMovie, {super.key});
+  final List<Movie> movieList;
+  const MoviesList(this.movieList, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +21,15 @@ class MoviesList extends StatelessWidget {
           itemCount: movieList.length,
           itemBuilder: (context, index) => ListTile(
             onTap: () {
-              navigateToMovie(movieList[index]);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        ProductInfo(movieList[index].id!, Products.movie),
+                  ));
             },
             leading: Image.network(
-              "${imageURL}${movieList[index].posterPath}",
+              "$imageURL/${movieList[index].posterPath}",
             ),
             title: Text(
               "${movieList[index].title} (${movieList[index].releaseDate?.split("-")[0]})",

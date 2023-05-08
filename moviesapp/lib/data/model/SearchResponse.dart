@@ -1,6 +1,6 @@
 class SearchResponse {
   int? page;
-  List<Results>? results;
+  List<SearchResults>? results;
   int? totalPages;
   int? totalResults;
 
@@ -9,9 +9,9 @@ class SearchResponse {
   SearchResponse.fromJson(Map<String, dynamic> json) {
     page = json['page'];
     if (json['results'] != null) {
-      results = <Results>[];
+      results = <SearchResults>[];
       json['results'].forEach((v) {
-        results!.add(new Results.fromJson(v));
+        results!.add(new SearchResults.fromJson(v));
       });
     }
     totalPages = json['total_pages'];
@@ -30,7 +30,7 @@ class SearchResponse {
   }
 }
 
-class Results {
+class SearchResults {
   bool? adult;
   String? backdropPath;
   int? id;
@@ -51,7 +51,7 @@ class Results {
   String? firstAirDate;
   List<String>? originCountry;
 
-  Results(
+  SearchResults(
       {this.adult,
       this.backdropPath,
       this.id,
@@ -72,7 +72,7 @@ class Results {
       this.firstAirDate,
       this.originCountry});
 
-  Results.fromJson(Map<String, dynamic> json) {
+  SearchResults.fromJson(Map<String, dynamic> json) {
     adult = json['adult'];
     backdropPath = json['backdrop_path'];
     id = json['id'];
@@ -82,7 +82,11 @@ class Results {
     overview = json['overview'];
     posterPath = json['poster_path'];
     mediaType = json['media_type'];
-    genreIds = json['genre_ids'].cast<int>();
+    if (json['genre_ids'] != null) {
+      genreIds = List<int>.from(json['genre_ids']);
+    } else {
+      genreIds = [];
+    }
     popularity = json['popularity'];
     releaseDate = json['release_date'];
     video = json['video'];
@@ -91,7 +95,11 @@ class Results {
     name = json['name'];
     originalName = json['original_name'];
     firstAirDate = json['first_air_date'];
-    originCountry = json['origin_country'].cast<String>();
+    if (json['origin_country'] != null) {
+      originCountry = List<String>.from(json['origin_country']);
+    } else {
+      originCountry = [];
+    }
   }
 
   Map<String, dynamic> toJson() {

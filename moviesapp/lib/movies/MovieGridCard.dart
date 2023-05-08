@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 import '../data/datasource/remote/constants.dart';
-import '../data/model/MovieResponse.dart';
+import '../data/model/MovieCategory.dart';
 
 class MovieGridCard extends StatelessWidget {
   MovieGridCard(this.movie, {super.key});
-  Results movie;
+  Movie movie;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class MovieGridCard extends StatelessWidget {
             ],
           ),
           child: Image.network(
-            "$imageURL${movie.posterPath}",
+            "$imageURL/${movie.posterPath}",
             fit: BoxFit.cover,
           ),
         ),

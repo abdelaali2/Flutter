@@ -1,17 +1,17 @@
-class TVResponse {
+class TVCategory {
   int? page;
-  List<TVResults>? results;
+  List<TVShow>? results;
   int? totalPages;
   int? totalResults;
 
-  TVResponse({this.page, this.results, this.totalPages, this.totalResults});
+  TVCategory({this.page, this.results, this.totalPages, this.totalResults});
 
-  TVResponse.fromJson(Map<String, dynamic> json) {
+  TVCategory.fromJson(Map<String, dynamic> json) {
     page = json['page'];
     if (json['results'] != null) {
-      results = <TVResults>[];
+      results = <TVShow>[];
       json['results'].forEach((v) {
-        results!.add(new TVResults.fromJson(v));
+        results!.add(new TVShow.fromJson(v));
       });
     }
     totalPages = json['total_pages'];
@@ -30,7 +30,7 @@ class TVResponse {
   }
 }
 
-class TVResults {
+class TVShow {
   String? backdropPath;
   String? firstAirDate;
   List<int>? genreIds;
@@ -45,7 +45,7 @@ class TVResults {
   dynamic voteAverage;
   int? voteCount;
 
-  TVResults(
+  TVShow(
       {this.backdropPath,
       this.firstAirDate,
       this.genreIds,
@@ -60,7 +60,7 @@ class TVResults {
       this.voteAverage,
       this.voteCount});
 
-  TVResults.fromJson(Map<String, dynamic> json) {
+  TVShow.fromJson(Map<String, dynamic> json) {
     backdropPath = json['backdrop_path'];
     firstAirDate = json['first_air_date'];
     genreIds = json['genre_ids'].cast<int>();

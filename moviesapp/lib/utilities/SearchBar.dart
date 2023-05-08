@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moviesapp/utilities/SearchList.dart';
 
 class SearchBar extends StatelessWidget {
   const SearchBar({super.key});
@@ -21,7 +22,11 @@ class SearchBar extends StatelessWidget {
             vertical: 8,
           ),
         ),
-        onSubmitted: (value) {},
+        textInputAction: TextInputAction.search,
+        onSubmitted: (value) {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => SearchList(value)));
+        },
       ),
     );
   }

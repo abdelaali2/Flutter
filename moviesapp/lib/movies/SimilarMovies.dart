@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:moviesapp/data/datasource/remote/constants.dart';
-import 'package:moviesapp/data/model/MovieResponse.dart';
+import 'package:moviesapp/data/model/MovieCategory.dart';
 
+import '../data/datasource/local/Products.dart';
 import '../data/datasource/remote/APIService.dart';
-import 'MovieInfo.dart';
+import '../data/model/DetailedMovie.dart';
+import '../utilities/ProductInfo.dart';
 
 class SimilarMovies extends StatelessWidget {
-  SimilarMovies(this.currentMovie, {super.key});
+  const SimilarMovies(this.currentMovie, {super.key});
 
-  Results currentMovie;
+  final DetailedMovie currentMovie;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,7 @@ class SimilarMovies extends StatelessWidget {
       future: APIService.api.fetchSimilarMovies(currentMovie.id!),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          MovieResponse similarMoviesResponse = snapshot.data!;
+          MovieCategory similarMoviesResponse = snapshot.data!;
           return SizedBox(
             width: double.infinity,
             height: 200,
@@ -30,13 +32,14 @@ class SimilarMovies extends StatelessWidget {
                 childAspectRatio: 1.2,
               ),
               itemBuilder: (context, index) {
-                Results similarMovie = similarMoviesResponse.results![index];
+                Movie similarMovie = similarMoviesResponse.results![index];
                 return InkWell(
                   onTap: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => MovieInfo(similarMovie),
+                          builder: (context) =>
+                              ProductInfo(similarMovie.id!, Products.movie),
                         ));
                   },
                   child: Column(
@@ -47,7 +50,7 @@ class SimilarMovies extends StatelessWidget {
                           width: 150,
                           height: 150,
                           placeholder:
-                              const AssetImage('assets/images/tab1.png'),
+                              const AssetImage('assets/images/movie_void.png'),
                           image: NetworkImage(
                               '$imageURL/${similarMovie.posterPath}'),
                           fit: BoxFit.cover,
@@ -55,7 +58,8 @@ class SimilarMovies extends StatelessWidget {
                             return SizedBox(
                                 width: 150,
                                 height: 150,
-                                child: Image.asset('assets/images/tab1.png'));
+                                child: Image.asset(
+                                    'assets/images/movie_filled.png'));
                           },
                         ),
                       ),

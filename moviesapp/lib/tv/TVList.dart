@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:moviesapp/utilities/CustomAppBar.dart';
+import 'package:moviesapp/utilities/ProductInfo.dart';
 
+import '../data/datasource/local/Products.dart';
 import '../data/datasource/remote/constants.dart';
-import '../data/model/TVResponse.dart';
+import '../data/model/TVCategory.dart';
 
 class TVList extends StatelessWidget {
-  TVList(this.tvShows, this._navigateToTVShow, {super.key});
-  List<TVResults> tvShows;
-  final void Function(TVResults) _navigateToTVShow;
+  const TVList(this.tvShows, {super.key});
+  final List<TVShow> tvShows;
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +21,15 @@ class TVList extends StatelessWidget {
           itemCount: tvShows.length,
           itemBuilder: (context, index) => ListTile(
             onTap: () {
-              _navigateToTVShow(tvShows[index]);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        ProductInfo(tvShows[index].id!, Products.tvShow),
+                  ));
             },
             leading: Image.network(
-              "$imageURL${tvShows[index].posterPath}",
+              "$imageURL/${tvShows[index].posterPath}",
             ),
             title: Text(
               "${tvShows[index].name} (${tvShows[index].firstAirDate?.split("-")[0]})",

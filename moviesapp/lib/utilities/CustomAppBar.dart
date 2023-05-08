@@ -10,8 +10,11 @@ class CustomAppBar extends AppBar {
               onTap: () {
                 Navigator.popUntil(context, (route) => route.isFirst);
               },
-              child: Image.asset(
-                "assets/images/movie.png",
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Image.asset(
+                  "assets/images/logo.png",
+                ),
               ),
             ),
           ],

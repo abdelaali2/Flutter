@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:moviesapp/data/model/TVResponse.dart';
+import 'package:moviesapp/data/model/TVCategory.dart';
 
 import '../data/datasource/remote/constants.dart';
 
 class TVGridCard extends StatelessWidget {
-  TVResults tvShow;
+  TVShow tvShow;
 
   TVGridCard(this.tvShow, {super.key});
 
@@ -26,7 +26,7 @@ class TVGridCard extends StatelessWidget {
             ],
           ),
           child: Image.network(
-            "$imageURL${tvShow.posterPath}",
+            "$imageURL/${tvShow.posterPath}",
             fit: BoxFit.cover,
           ),
         ),

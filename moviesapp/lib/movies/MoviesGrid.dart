@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:moviesapp/utilities/CustomGridCard.dart';
-import '../data/model/MovieResponse.dart';
+import '../data/datasource/local/Products.dart';
+import '../data/model/MovieCategory.dart';
+import '../utilities/ProductInfo.dart';
 import 'MovieGridCard.dart';
 import 'MoviesList.dart';
 
 class MoviesGrid extends StatelessWidget {
-  List<Results> movieList;
-  final void Function(Results) _navigateToMovie;
-
-  MoviesGrid(this.movieList, this._navigateToMovie, {super.key});
+  final List<Movie> movieList;
+  const MoviesGrid(this.movieList, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    List<Results> shortList = movieList.sublist(0, 4);
+    List<Movie> shortList = movieList.sublist(0, 4);
     return SizedBox(
       width: double.infinity,
       height: 300,
@@ -30,26 +30,27 @@ class MoviesGrid extends StatelessWidget {
           if (index == shortList.length) {
             return InkWell(
               onTap: () {
-                _showMore(context);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => MoviesList(movieList)));
               },
               child: const CustomCard(),
             );
           } else {
             return InkWell(
                 onTap: () {
-                  _navigateToMovie(shortList[index]);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            ProductInfo(shortList[index].id!, Products.movie),
+                      ));
                 },
                 child: MovieGridCard(shortList[index]));
           }
         },
       ),
     );
-  }
-
-  void _showMore(BuildContext context) {
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => MoviesList(movieList, _navigateToMovie)));
   }
 }

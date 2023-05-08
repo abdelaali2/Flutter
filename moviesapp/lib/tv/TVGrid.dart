@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:moviesapp/data/datasource/local/Products.dart';
 import 'package:moviesapp/utilities/CustomGridCard.dart';
+import 'package:moviesapp/utilities/ProductInfo.dart';
 
-import '../data/model/TVResponse.dart';
+import '../data/model/TVCategory.dart';
 import 'TVGridCard.dart';
 import 'TVList.dart';
 
 class TVGrid extends StatelessWidget {
-  TVGrid(this.tvShows, this._navigateToTVShow, {super.key});
-  List<TVResults> tvShows;
-  final void Function(TVResults) _navigateToTVShow;
+  const TVGrid(this.tvShows, {super.key});
+  final List<TVShow> tvShows;
 
   @override
   Widget build(BuildContext context) {
-    List<TVResults> shortList = tvShows.sublist(0, 4);
+    List<TVShow> shortList = tvShows.sublist(0, 4);
     return SizedBox(
       width: double.infinity,
       height: 300,
@@ -30,26 +31,25 @@ class TVGrid extends StatelessWidget {
           if (index == shortList.length) {
             return InkWell(
               onTap: () {
-                _showMore(context);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => TVList(tvShows)));
               },
               child: const CustomCard(),
             );
           } else {
             return InkWell(
                 onTap: () {
-                  _navigateToTVShow(shortList[index]);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            ProductInfo(shortList[index].id!, Products.tvShow),
+                      ));
                 },
                 child: TVGridCard(shortList[index]));
           }
         },
       ),
     );
-  }
-
-  void _showMore(BuildContext context) {
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => TVList(tvShows, _navigateToTVShow)));
   }
 }
