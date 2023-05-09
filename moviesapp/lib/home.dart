@@ -38,7 +38,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
       ),
       bottomNavigationBar: CustomBottomTabBar(_controller, _selectedIndex),
       body: Column(children: [
-        SearchBar(),
+        const SearchBar(),
         Expanded(
           child: TabBarView(controller: _controller, children: const [
             MoviesTab(),

@@ -9,7 +9,7 @@ class RatingStars extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RatingBar.builder(
-      initialRating: rating.toDouble(),
+      initialRating: (rating.toDouble() / 2),
       minRating: 1,
       maxRating: 10,
       ignoreGestures: true,
