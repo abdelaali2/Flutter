@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:moviesapp/utilities/SearchBar.dart';
 
 import '../data/datasource/local/Categories.dart';
 import '../data/datasource/remote/APIService.dart';
 import '../data/model/TVCategory.dart';
-import 'TVGrid.dart';
+import '../utilities/CategoryGrid.dart';
 
 class TVTab extends StatefulWidget {
   const TVTab({super.key});
@@ -34,6 +35,11 @@ class _TVTabState extends State<TVTab> {
                   const SizedBox(
                     height: 5,
                   ),
+                  const SearchBar(),
+                  // Separator Sized Box.
+                  const SizedBox(
+                    height: 5,
+                  ),
                   const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text(
@@ -54,13 +60,13 @@ class _TVTabState extends State<TVTab> {
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         TVCategory tvResponse = snapshot.data!;
-                        return TVGrid(tvResponse.results!);
+                        return CategoryGrid(tvResponse.results);
                       } else if (snapshot.hasError) {
                         return Center(
                           child: Text(snapshot.error.toString()),
                         );
                       } else {
-                        return const CircularProgressIndicator();
+                        return const Center(child: CircularProgressIndicator());
                       }
                     },
                   ),
@@ -86,13 +92,13 @@ class _TVTabState extends State<TVTab> {
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         TVCategory tvResponse = snapshot.data!;
-                        return TVGrid(tvResponse.results!);
+                        return CategoryGrid(tvResponse.results);
                       } else if (snapshot.hasError) {
                         return Center(
                           child: Text(snapshot.error.toString()),
                         );
                       } else {
-                        return const CircularProgressIndicator();
+                        return const Center(child: CircularProgressIndicator());
                       }
                     },
                   ),
@@ -118,13 +124,13 @@ class _TVTabState extends State<TVTab> {
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         TVCategory tvResponse = snapshot.data!;
-                        return TVGrid(tvResponse.results!);
+                        return CategoryGrid(tvResponse.results);
                       } else if (snapshot.hasError) {
                         return Center(
                           child: Text(snapshot.error.toString()),
                         );
                       } else {
-                        return const CircularProgressIndicator();
+                        return const Center(child: CircularProgressIndicator());
                       }
                     },
                   ),
@@ -150,13 +156,13 @@ class _TVTabState extends State<TVTab> {
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         TVCategory tvResponse = snapshot.data!;
-                        return TVGrid(tvResponse.results!);
+                        return CategoryGrid(tvResponse.results);
                       } else if (snapshot.hasError) {
                         return Center(
                           child: Text(snapshot.error.toString()),
                         );
                       } else {
-                        return const CircularProgressIndicator();
+                        return const Center(child: CircularProgressIndicator());
                       }
                     },
                   ),

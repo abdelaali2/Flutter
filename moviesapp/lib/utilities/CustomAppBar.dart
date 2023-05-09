@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class CustomAppBar extends AppBar {
   CustomAppBar({super.key, required BuildContext context})
       : super(
-          title: const Text('CineGuide'),
+          title: const Text('C I N E G U I D E'),
           centerTitle: true,
           actions: [
             GestureDetector(

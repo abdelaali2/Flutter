@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:moviesapp/data/datasource/local/Categories.dart';
 import 'package:moviesapp/data/datasource/remote/APIService.dart';
 import 'package:moviesapp/data/model/MovieCategory.dart';
+import 'package:moviesapp/utilities/SearchBar.dart';
 
-import 'MoviesGrid.dart';
+import '../utilities/CategoryGrid.dart';
 
 class MoviesTab extends StatefulWidget {
   const MoviesTab({super.key});
@@ -34,6 +35,11 @@ class _MoviesTabState extends State<MoviesTab> {
                   const SizedBox(
                     height: 5,
                   ),
+                  const SearchBar(),
+                  // Separator Sized Box.
+                  const SizedBox(
+                    height: 5,
+                  ),
                   const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text(
@@ -54,13 +60,13 @@ class _MoviesTabState extends State<MoviesTab> {
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         MovieCategory movieResponse = snapshot.data!;
-                        return MoviesGrid(movieResponse.results!);
+                        return CategoryGrid(movieResponse.results!);
                       } else if (snapshot.hasError) {
                         return Center(
                           child: Text(snapshot.error.toString()),
                         );
                       } else {
-                        return const CircularProgressIndicator();
+                        return const Center(child: CircularProgressIndicator());
                       }
                     },
                   ),
@@ -86,13 +92,13 @@ class _MoviesTabState extends State<MoviesTab> {
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         MovieCategory movieResponse = snapshot.data!;
-                        return MoviesGrid(movieResponse.results!);
+                        return CategoryGrid(movieResponse.results!);
                       } else if (snapshot.hasError) {
                         return Center(
                           child: Text(snapshot.error.toString()),
                         );
                       } else {
-                        return const CircularProgressIndicator();
+                        return const Center(child: CircularProgressIndicator());
                       }
                     },
                   ),
@@ -118,13 +124,13 @@ class _MoviesTabState extends State<MoviesTab> {
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         MovieCategory movieResponse = snapshot.data!;
-                        return MoviesGrid(movieResponse.results!);
+                        return CategoryGrid(movieResponse.results!);
                       } else if (snapshot.hasError) {
                         return Center(
                           child: Text(snapshot.error.toString()),
                         );
                       } else {
-                        return const CircularProgressIndicator();
+                        return const Center(child: CircularProgressIndicator());
                       }
                     },
                   ),
@@ -150,13 +156,13 @@ class _MoviesTabState extends State<MoviesTab> {
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         MovieCategory category = snapshot.data!;
-                        return MoviesGrid(category.results!);
+                        return CategoryGrid(category.results!);
                       } else if (snapshot.hasError) {
                         return Center(
                           child: Text(snapshot.error.toString()),
                         );
                       } else {
-                        return const CircularProgressIndicator();
+                        return const Center(child: CircularProgressIndicator());
                       }
                     },
                   ),

@@ -1,18 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:moviesapp/utilities/CustomGridCard.dart';
+import 'package:moviesapp/utilities/GridMoreCard.dart';
 import '../data/datasource/local/Products.dart';
 import '../data/model/MovieCategory.dart';
-import '../utilities/ProductInfo.dart';
-import '../utilities/ProductGridCard.dart';
-import 'MoviesList.dart';
+import '../data/model/TVCategory.dart';
+import 'ProductInfo.dart';
+import 'ProductGridCard.dart';
+import 'CategoryList.dart';
 
-class MoviesGrid extends StatelessWidget {
-  final List<Movie> movieList;
-  const MoviesGrid(this.movieList, {super.key});
+class CategoryGrid<T> extends StatelessWidget {
+  dynamic categoryGrid;
+  CategoryGrid(this.categoryGrid, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    List<Movie> shortList = movieList.sublist(0, 4);
+    dynamic shortList;
+    late String productType;
+
+    shortList ??= [];
+
+    if (categoryGrid is List<Movie>) {
+      categoryGrid = categoryGrid as List<Movie>;
+      shortList = <Movie>[];
+      shortList.addAll(categoryGrid.sublist(0, 4));
+      productType = Products.movie;
+    } else if (categoryGrid is List<TVShow>) {
+      categoryGrid = categoryGrid as List<TVShow>;
+      shortList = <TVShow>[];
+      shortList.addAll(categoryGrid.sublist(0, 4));
+      productType = Products.tvShow;
+    }
+
     return SizedBox(
       width: double.infinity,
       height: 300,
@@ -23,7 +40,7 @@ class MoviesGrid extends StatelessWidget {
         itemCount: shortList.length + 1,
         gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
           maxCrossAxisExtent: 300,
-          childAspectRatio: 2 / 0.8,
+          childAspectRatio: 2,
           mainAxisSpacing: 15,
         ),
         itemBuilder: (context, index) {
@@ -33,9 +50,9 @@ class MoviesGrid extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => MoviesList(movieList)));
+                        builder: (context) => MoviesList(categoryGrid)));
               },
-              child: const CustomCard(),
+              child: const GridMoreCard(),
             );
           } else {
             return InkWell(
@@ -44,7 +61,7 @@ class MoviesGrid extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) =>
-                            ProductInfo(shortList[index].id!, Products.movie),
+                            ProductInfo(shortList[index].id!, productType),
                       ));
                 },
                 child: ProductGridCard(shortList[index]));

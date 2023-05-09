@@ -20,7 +20,6 @@ class _CustomBottomTabBarState extends State<CustomBottomTabBar> {
       setState(() {
         widget._selectedIndex = widget._controller.index;
       });
-      print("Selected Index: " + widget._controller.index.toString());
     });
   }
 

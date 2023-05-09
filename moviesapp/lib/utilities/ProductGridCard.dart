@@ -12,58 +12,59 @@ class ProductGridCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String? title;
-    String? posterPath;
+    String? posterPath = product.posterPath;
     dynamic releaseDate;
-    dynamic voteAverage;
+    dynamic voteAverage = product.voteAverage;
 
     if (product is Movie) {
-      product = product as Movie;
+      product as Movie;
       title = product.title;
-      posterPath = product.posterPath;
       releaseDate = product.releaseDate;
-      voteAverage = product.voteAverage;
     } else if (product is TVShow) {
-      product = product as TVShow;
+      product as TVShow;
       title = product.name;
-      posterPath = product.posterPath;
       releaseDate = product.firstAirDate;
-      voteAverage = product.voteAverage;
     }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
-                spreadRadius: 2,
-                blurRadius: 5,
-                offset: const Offset(0, 3),
-              )
-            ],
-          ),
-          child: Image.network(
-            "$imageURL/$posterPath",
-            fit: BoxFit.cover,
+        SizedBox(
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 2,
+                  blurRadius: 5,
+                  offset: const Offset(0, 3),
+                )
+              ],
+            ),
+            child: Image.network(
+              "$imageURL/$posterPath",
+              fit: BoxFit.cover,
+            ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
+        const SizedBox(
+          height: 5,
+        ),
+        Expanded(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 "$title (${releaseDate.split("-")[0]})",
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 16.0,
+                  fontSize: 15.0,
                 ),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 4),
+              const SizedBox(height: 1),
               RatingStars(voteAverage.toDouble()),
             ],
           ),

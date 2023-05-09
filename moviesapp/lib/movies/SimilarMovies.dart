@@ -29,7 +29,7 @@ class SimilarMovies extends StatelessWidget {
               itemCount: similarMoviesResponse.results!.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 1,
-                childAspectRatio: 1.2,
+                childAspectRatio: 1.120,
               ),
               itemBuilder: (context, index) {
                 Movie similarMovie = similarMoviesResponse.results![index];

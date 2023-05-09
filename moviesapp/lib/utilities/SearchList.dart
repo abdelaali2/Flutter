@@ -4,8 +4,7 @@ import 'package:moviesapp/data/model/SearchResponse.dart';
 import 'package:moviesapp/utilities/CustomAppBar.dart';
 
 import '../data/datasource/local/Products.dart';
-import '../movies/SearchedMovieLisTile.dart';
-import '../tv/SearchedTVListTile.dart';
+import 'SearchTile.dart';
 
 class SearchList extends StatelessWidget {
   SearchList(this.searchQuery, {super.key});
@@ -28,11 +27,7 @@ class SearchList extends StatelessWidget {
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: results.length,
-                  itemBuilder: (context, index) {
-                    return results[index].mediaType == Products.movie
-                        ? SearchMovieTile(results[index])
-                        : SearchTVTile(results[index]);
-                  },
+                  itemBuilder: (context, index) => SearchTile(results[index]),
                   separatorBuilder: (BuildContext context, int index) =>
                       const Divider(),
                 ),

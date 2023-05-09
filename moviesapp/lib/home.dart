@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:moviesapp/tv/TVTab.dart';
 import 'package:moviesapp/utilities/BottomTabBar.dart';
 import 'package:moviesapp/utilities/CustomAppBar.dart';
+import 'package:moviesapp/utilities/ProfileTab.dart';
 import 'package:moviesapp/utilities/SearchBar.dart';
 
 import 'movies/MoviesTab.dart';
@@ -17,7 +18,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   late TabController _controller;
-  int _selectedIndex = 0;
+  final int _selectedIndex = 0;
   @override
   void initState() {
     super.initState();
@@ -37,15 +38,10 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
         context: context,
       ),
       bottomNavigationBar: CustomBottomTabBar(_controller, _selectedIndex),
-      body: Column(children: [
-        const SearchBar(),
-        Expanded(
-          child: TabBarView(controller: _controller, children: const [
-            MoviesTab(),
-            TVTab(),
-            Center(child: Text('Profile Tab')),
-          ]),
-        ),
+      body: TabBarView(controller: _controller, children: [
+        const MoviesTab(),
+        const TVTab(),
+        ProfileTab(),
       ]),
     );
   }
