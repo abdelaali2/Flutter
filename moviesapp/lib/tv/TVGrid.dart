@@ -4,7 +4,7 @@ import 'package:moviesapp/utilities/CustomGridCard.dart';
 import 'package:moviesapp/utilities/ProductInfo.dart';
 
 import '../data/model/TVCategory.dart';
-import 'TVGridCard.dart';
+import '../utilities/ProductGridCard.dart';
 import 'TVList.dart';
 
 class TVGrid extends StatelessWidget {
@@ -46,7 +46,7 @@ class TVGrid extends StatelessWidget {
                             ProductInfo(shortList[index].id!, Products.tvShow),
                       ));
                 },
-                child: TVGridCard(shortList[index]));
+                child: ProductGridCard(shortList[index]));
           }
         },
       ),

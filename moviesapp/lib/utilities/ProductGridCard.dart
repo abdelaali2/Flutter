@@ -2,17 +2,37 @@ import 'package:flutter/material.dart';
 import 'package:moviesapp/data/model/TVCategory.dart';
 
 import '../data/datasource/remote/constants.dart';
-import '../utilities/RatingStars.dart';
+import '../data/model/MovieCategory.dart';
+import 'RatingStars.dart';
 
-class TVGridCard extends StatelessWidget {
-  TVShow tvShow;
-
-  TVGridCard(this.tvShow, {super.key});
+class ProductGridCard extends StatelessWidget {
+  ProductGridCard(this.product, {super.key});
+  dynamic product;
 
   @override
   Widget build(BuildContext context) {
+    String? title;
+    String? posterPath;
+    dynamic releaseDate;
+    dynamic voteAverage;
+
+    if (product is Movie) {
+      product = product as Movie;
+      title = product.title;
+      posterPath = product.posterPath;
+      releaseDate = product.releaseDate;
+      voteAverage = product.voteAverage;
+    } else if (product is TVShow) {
+      product = product as TVShow;
+      title = product.name;
+      posterPath = product.posterPath;
+      releaseDate = product.firstAirDate;
+      voteAverage = product.voteAverage;
+    }
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Container(
           decoration: BoxDecoration(
@@ -27,7 +47,7 @@ class TVGridCard extends StatelessWidget {
             ],
           ),
           child: Image.network(
-            "$imageURL/${tvShow.posterPath}",
+            "$imageURL/$posterPath",
             fit: BoxFit.cover,
           ),
         ),
@@ -36,7 +56,7 @@ class TVGridCard extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                "${tvShow.name} (${tvShow.firstAirDate?.split("-")[0]})",
+                "$title (${releaseDate.split("-")[0]})",
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16.0,
@@ -44,7 +64,7 @@ class TVGridCard extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 4),
-              RatingStars(tvShow.voteAverage.toDouble()),
+              RatingStars(voteAverage.toDouble()),
             ],
           ),
         ),

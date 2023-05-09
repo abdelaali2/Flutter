@@ -3,7 +3,7 @@ import 'package:moviesapp/utilities/CustomGridCard.dart';
 import '../data/datasource/local/Products.dart';
 import '../data/model/MovieCategory.dart';
 import '../utilities/ProductInfo.dart';
-import 'MovieGridCard.dart';
+import '../utilities/ProductGridCard.dart';
 import 'MoviesList.dart';
 
 class MoviesGrid extends StatelessWidget {
@@ -47,7 +47,7 @@ class MoviesGrid extends StatelessWidget {
                             ProductInfo(shortList[index].id!, Products.movie),
                       ));
                 },
-                child: MovieGridCard(shortList[index]));
+                child: ProductGridCard(shortList[index]));
           }
         },
       ),
