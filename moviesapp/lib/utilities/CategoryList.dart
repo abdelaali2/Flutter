@@ -26,15 +26,20 @@ class MoviesList extends StatelessWidget {
     }
 
     return Scaffold(
-      appBar: CustomAppBar(context: context),
-      body: SingleChildScrollView(
-        child: ListView.separated(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: categoryList.length,
-          itemBuilder: (context, index) => CustomListTile(categoryList[index]),
-          separatorBuilder: (BuildContext context, int index) =>
-              const Divider(),
+      body: NestedScrollView(
+        headerSliverBuilder: (context, innerBoxIsScrolled) => [
+          CustomAppBar(context: context),
+        ],
+        body: SingleChildScrollView(
+          child: ListView.separated(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: categoryList.length,
+            itemBuilder: (context, index) =>
+                CustomListTile(categoryList[index]),
+            separatorBuilder: (BuildContext context, int index) =>
+                const Divider(),
+          ),
         ),
       ),
     );

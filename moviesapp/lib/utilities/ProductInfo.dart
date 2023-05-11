@@ -17,23 +17,28 @@ class ProductInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(context: context),
-      body: SingleChildScrollView(
-        child: FutureBuilder(
-          future: APIService.api.fetchProductInfo(productID, productMediaType),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return productMediaType == Products.movie
-                  ? MoviePage(snapshot.data as DetailedMovie)
-                  : TVShowPage(snapshot.data as DetailedTVShow);
-            } else if (snapshot.hasError) {
-              return Center(
-                child: Text(snapshot.error.toString()),
-              );
-            } else {
-              return const Center(child: CircularProgressIndicator());
-            }
-          },
+      body: NestedScrollView(
+        headerSliverBuilder: (context, innerBoxIsScrolled) => [
+          CustomAppBar(context: context),
+        ],
+        body: SingleChildScrollView(
+          child: FutureBuilder(
+            future:
+                APIService.api.fetchProductInfo(productID, productMediaType),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return productMediaType == Products.movie
+                    ? MoviePage(snapshot.data as DetailedMovie)
+                    : TVShowPage(snapshot.data as DetailedTVShow);
+              } else if (snapshot.hasError) {
+                return Center(
+                  child: Text(snapshot.error.toString()),
+                );
+              } else {
+                return const Center(child: CircularProgressIndicator());
+              }
+            },
+          ),
         ),
       ),
     );

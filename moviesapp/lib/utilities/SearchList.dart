@@ -14,32 +14,36 @@ class SearchList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(context: context),
-      body: SingleChildScrollView(
-        child: FutureBuilder(
-          future: APIService.api.search(searchQuery),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              SearchResponse searchPayload = snapshot.data!;
-              List<SearchResults> results = searchPayload.results!;
-              return SingleChildScrollView(
-                child: ListView.separated(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: results.length,
-                  itemBuilder: (context, index) => SearchTile(results[index]),
-                  separatorBuilder: (BuildContext context, int index) =>
-                      const Divider(),
-                ),
-              );
-            } else if (snapshot.hasError) {
-              return Center(
-                child: Text(snapshot.error.toString()),
-              );
-            } else {
-              return const Center(child: CircularProgressIndicator());
-            }
-          },
+      body: NestedScrollView(
+        headerSliverBuilder: (context, innerBoxIsScrolled) => [
+          CustomAppBar(context: context),
+        ],
+        body: SingleChildScrollView(
+          child: FutureBuilder(
+            future: APIService.api.search(searchQuery),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                SearchResponse searchPayload = snapshot.data!;
+                List<SearchResults> results = searchPayload.results!;
+                return SingleChildScrollView(
+                  child: ListView.separated(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: results.length,
+                    itemBuilder: (context, index) => SearchTile(results[index]),
+                    separatorBuilder: (BuildContext context, int index) =>
+                        const Divider(),
+                  ),
+                );
+              } else if (snapshot.hasError) {
+                return Center(
+                  child: Text(snapshot.error.toString()),
+                );
+              } else {
+                return const Center(child: CircularProgressIndicator());
+              }
+            },
+          ),
         ),
       ),
     );

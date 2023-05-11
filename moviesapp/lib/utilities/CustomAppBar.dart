@@ -1,9 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:moviesapp/utilities/SearchBar.dart';
 
-class CustomAppBar extends AppBar {
+class CustomAppBar extends SliverAppBar {
   CustomAppBar({super.key, required BuildContext context})
       : super(
-          title: const Text('C I N E G U I D E'),
+          pinned: true,
+          floating: true,
+          snap: true,
+          expandedHeight: 125,
+          backgroundColor: Colors.deepOrange,
+          title: const Text(
+            'C I N E G U I D E',
+            style: TextStyle(
+              letterSpacing: 2.0,
+            ),
+          ),
           centerTitle: true,
           actions: [
             GestureDetector(
@@ -18,5 +29,13 @@ class CustomAppBar extends AppBar {
               ),
             ),
           ],
+          flexibleSpace: FlexibleSpaceBar(
+            background: Container(
+              decoration: BoxDecoration(
+                color: Colors.deepOrange[600],
+              ),
+            ),
+          ),
+          bottom: const SearchBar(),
         );
 }

@@ -31,15 +31,6 @@ class _MoviesTabState extends State<MoviesTab> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Separator Sized Box.
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  const SearchBar(),
-                  // Separator Sized Box.
-                  const SizedBox(
-                    height: 5,
-                  ),
                   const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text(

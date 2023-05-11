@@ -34,15 +34,17 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(
-        context: context,
-      ),
       bottomNavigationBar: CustomBottomTabBar(_controller, _selectedIndex),
-      body: TabBarView(controller: _controller, children: [
-        const MoviesTab(),
-        const TVTab(),
-        ProfileTab(),
-      ]),
+      body: NestedScrollView(
+        headerSliverBuilder: (context, innerBoxIsScrolled) => [
+          CustomAppBar(context: context),
+        ],
+        body: TabBarView(controller: _controller, children: [
+          const MoviesTab(),
+          const TVTab(),
+          ProfileTab(),
+        ]),
+      ),
     );
   }
 }
