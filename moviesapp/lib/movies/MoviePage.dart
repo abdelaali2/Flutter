@@ -41,7 +41,7 @@ class MoviePage extends StatelessWidget {
           height: 10,
         ),
         Text(
-          "${movie.title}\n(${movie.releaseDate})",
+          "${movie.title}\n(${movie.releaseDate ?? ""})",
           style: const TextStyle(
             fontSize: 20.0,
             fontWeight: FontWeight.bold,

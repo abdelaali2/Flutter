@@ -41,7 +41,7 @@ class TVShowPage extends StatelessWidget {
           height: 10,
         ),
         Text(
-          "${tvShow.name}\n(${tvShow.firstAirDate})",
+          "${tvShow.name}\n(${tvShow.firstAirDate ?? ""})",
           style: const TextStyle(
             fontSize: 20.0,
             fontWeight: FontWeight.bold,

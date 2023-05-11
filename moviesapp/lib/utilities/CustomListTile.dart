@@ -45,7 +45,7 @@ class CustomListTile extends StatelessWidget {
         "$imageURL/$posterPath",
       ),
       title: Text(
-        "$title (${releaseDate?.split("-")[0]})",
+        "$title (${releaseDate?.split("-")[0] ?? ""})",
         style: const TextStyle(
           fontWeight: FontWeight.bold,
           fontSize: 16.0,

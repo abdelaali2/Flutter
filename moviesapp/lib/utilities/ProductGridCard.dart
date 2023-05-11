@@ -57,7 +57,7 @@ class ProductGridCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "$title (${releaseDate.split("-")[0]})",
+                "$title (${releaseDate.split("-")[0] ?? ""})",
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 15.0,
