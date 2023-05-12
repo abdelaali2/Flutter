@@ -3,6 +3,7 @@ import 'package:moviesapp/data/datasource/remote/APIService.dart';
 import 'package:moviesapp/data/model/DetailedMovie.dart';
 import 'package:moviesapp/movies/MoviePage.dart';
 import 'package:moviesapp/utilities/CustomAppBar.dart';
+import 'package:moviesapp/utilities/NetworkError.dart';
 
 import '../data/datasource/local/Products.dart';
 import '../data/model/DetailedTVShow.dart';
@@ -31,9 +32,7 @@ class ProductInfo extends StatelessWidget {
                     ? MoviePage(snapshot.data as DetailedMovie)
                     : TVShowPage(snapshot.data as DetailedTVShow);
               } else if (snapshot.hasError) {
-                return Center(
-                  child: Text(snapshot.error.toString()),
-                );
+                return NetworkError();
               } else {
                 return const Center(child: CircularProgressIndicator());
               }

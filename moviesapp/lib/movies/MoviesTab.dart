@@ -5,6 +5,7 @@ import 'package:moviesapp/data/model/MovieCategory.dart';
 import 'package:moviesapp/utilities/SearchBar.dart';
 
 import '../utilities/CategoryGrid.dart';
+import '../utilities/NetworkError.dart';
 
 class MoviesTab extends StatefulWidget {
   const MoviesTab({super.key});
@@ -53,9 +54,7 @@ class _MoviesTabState extends State<MoviesTab> {
                         MovieCategory movieResponse = snapshot.data!;
                         return CategoryGrid(movieResponse.results!);
                       } else if (snapshot.hasError) {
-                        return Center(
-                          child: Text(snapshot.error.toString()),
-                        );
+                        return NetworkError();
                       } else {
                         return const Center(child: CircularProgressIndicator());
                       }
@@ -85,9 +84,7 @@ class _MoviesTabState extends State<MoviesTab> {
                         MovieCategory movieResponse = snapshot.data!;
                         return CategoryGrid(movieResponse.results!);
                       } else if (snapshot.hasError) {
-                        return Center(
-                          child: Text(snapshot.error.toString()),
-                        );
+                        return NetworkError();
                       } else {
                         return const Center(child: CircularProgressIndicator());
                       }
@@ -117,9 +114,7 @@ class _MoviesTabState extends State<MoviesTab> {
                         MovieCategory movieResponse = snapshot.data!;
                         return CategoryGrid(movieResponse.results!);
                       } else if (snapshot.hasError) {
-                        return Center(
-                          child: Text(snapshot.error.toString()),
-                        );
+                        return NetworkError();
                       } else {
                         return const Center(child: CircularProgressIndicator());
                       }
@@ -149,9 +144,7 @@ class _MoviesTabState extends State<MoviesTab> {
                         MovieCategory category = snapshot.data!;
                         return CategoryGrid(category.results!);
                       } else if (snapshot.hasError) {
-                        return Center(
-                          child: Text(snapshot.error.toString()),
-                        );
+                        return NetworkError();
                       } else {
                         return const Center(child: CircularProgressIndicator());
                       }

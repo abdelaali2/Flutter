@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:moviesapp/data/datasource/remote/APIService.dart';
 import 'package:moviesapp/data/model/SearchResponse.dart';
 import 'package:moviesapp/utilities/CustomAppBar.dart';
+import 'package:moviesapp/utilities/NetworkError.dart';
 
 import '../data/datasource/local/Products.dart';
 import 'SearchTile.dart';
@@ -36,9 +37,7 @@ class SearchList extends StatelessWidget {
                   ),
                 );
               } else if (snapshot.hasError) {
-                return Center(
-                  child: Text(snapshot.error.toString()),
-                );
+                return NetworkError();
               } else {
                 return const Center(child: CircularProgressIndicator());
               }

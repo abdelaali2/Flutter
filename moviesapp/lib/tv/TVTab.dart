@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moviesapp/utilities/NetworkError.dart';
 import 'package:moviesapp/utilities/SearchBar.dart';
 
 import '../data/datasource/local/Categories.dart';
@@ -53,9 +54,7 @@ class _TVTabState extends State<TVTab> {
                         TVCategory tvResponse = snapshot.data!;
                         return CategoryGrid(tvResponse.results);
                       } else if (snapshot.hasError) {
-                        return Center(
-                          child: Text(snapshot.error.toString()),
-                        );
+                        return NetworkError();
                       } else {
                         return const Center(child: CircularProgressIndicator());
                       }
@@ -85,9 +84,7 @@ class _TVTabState extends State<TVTab> {
                         TVCategory tvResponse = snapshot.data!;
                         return CategoryGrid(tvResponse.results);
                       } else if (snapshot.hasError) {
-                        return Center(
-                          child: Text(snapshot.error.toString()),
-                        );
+                        return NetworkError();
                       } else {
                         return const Center(child: CircularProgressIndicator());
                       }
@@ -117,9 +114,7 @@ class _TVTabState extends State<TVTab> {
                         TVCategory tvResponse = snapshot.data!;
                         return CategoryGrid(tvResponse.results);
                       } else if (snapshot.hasError) {
-                        return Center(
-                          child: Text(snapshot.error.toString()),
-                        );
+                        return NetworkError();
                       } else {
                         return const Center(child: CircularProgressIndicator());
                       }
@@ -149,9 +144,7 @@ class _TVTabState extends State<TVTab> {
                         TVCategory tvResponse = snapshot.data!;
                         return CategoryGrid(tvResponse.results);
                       } else if (snapshot.hasError) {
-                        return Center(
-                          child: Text(snapshot.error.toString()),
-                        );
+                        return NetworkError();
                       } else {
                         return const Center(child: CircularProgressIndicator());
                       }

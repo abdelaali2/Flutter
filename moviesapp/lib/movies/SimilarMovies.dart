@@ -5,6 +5,7 @@ import 'package:moviesapp/data/model/MovieCategory.dart';
 import '../data/datasource/local/Products.dart';
 import '../data/datasource/remote/APIService.dart';
 import '../data/model/DetailedMovie.dart';
+import '../utilities/NetworkError.dart';
 import '../utilities/ProductInfo.dart';
 
 class SimilarMovies extends StatelessWidget {
@@ -71,9 +72,7 @@ class SimilarMovies extends StatelessWidget {
             ),
           );
         } else if (snapshot.hasError) {
-          return Center(
-            child: Text(snapshot.error.toString()),
-          );
+          return NetworkError();
         } else {
           return const CircularProgressIndicator();
         }

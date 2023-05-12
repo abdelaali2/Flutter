@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moviesapp/data/datasource/local/Products.dart';
 import 'package:moviesapp/data/model/TVCategory.dart';
+import 'package:moviesapp/utilities/NetworkError.dart';
 import 'package:moviesapp/utilities/ProductInfo.dart';
 
 import '../data/datasource/remote/APIService.dart';
@@ -71,9 +72,7 @@ class SimilarTVShows extends StatelessWidget {
             ),
           );
         } else if (snapshot.hasError) {
-          return Center(
-            child: Text(snapshot.error.toString()),
-          );
+          return NetworkError();
         } else {
           return const CircularProgressIndicator();
         }
