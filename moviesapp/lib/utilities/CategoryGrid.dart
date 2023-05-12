@@ -21,12 +21,12 @@ class CategoryGrid<T> extends StatelessWidget {
     if (categoryGrid is List<Movie>) {
       categoryGrid = categoryGrid as List<Movie>;
       shortList = <Movie>[];
-      shortList.addAll(categoryGrid.sublist(0, 4));
+      shortList.addAll(categoryGrid.sublist(0, 5));
       productType = Products.movie;
     } else if (categoryGrid is List<TVShow>) {
       categoryGrid = categoryGrid as List<TVShow>;
       shortList = <TVShow>[];
-      shortList.addAll(categoryGrid.sublist(0, 4));
+      shortList.addAll(categoryGrid.sublist(0, 5));
       productType = Products.tvShow;
     }
 
